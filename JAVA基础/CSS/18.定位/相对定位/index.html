@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    以自己为参照物，原来的位置会被保留-->
+  <style>
+      body{
+          padding: 30px;
+      }
+    div{
+      margin: 10px;
+      padding: 5px;
+      font-size: 12px;
+      line-height: 25px;
+    }
+    #father{
+      border: 1px solid #000000;
+      padding: 0px;
+    }
+    #first{
+      border: 1px dashed #4cd9a7;
+      background-color: pink;
+        position: relative;/*相对定位：上下左右*/
+        top: -20px;
+    }
+    #second{
+      border: 1px dashed #e74283;
+      background-color: blue;
+        position: relative;
+        bottom: 100px;
+    }
+    #third{
+      border: 1px dashed #5ccd61;
+      background-color: purple;
+        position: relative;
+        right: -50px;
+    }
+  </style>
+</head>
+<body>
+<div id="father">
+    <div id="first">第一个盒子</div>
+    <div id="second">第二个盒子</div>
+    <div id="third">第三个盒子</div>
+</div>
+</body>
+</html>

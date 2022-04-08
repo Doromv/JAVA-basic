@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+<!--js中的所有的键都是字符串，值是任意对象！！！-->
+    'use strict'
+    var person={
+      name:'Doromv',
+      age:20,
+      email:'935863060@qq,com',
+      score:150
+    };
+    console.log(person.score);
+    person.age=21;
+    console.log(person.age);
+    delete person.score;
+    console.log(person);
+    person.score=150;
+    console.log(person);
+    console.log('age'in person);
+    console.log(person.hasOwnProperty('toString'));
+  </script>
+</head>
+<body>
+
+</body>
+</html>

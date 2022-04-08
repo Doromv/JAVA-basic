@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--  固定定位定死在浏览器，不会随着滚动条的下拉而改变位置-->
+  <style>
+    body{
+      height: 1000px;
+    }
+    div:nth-of-type(1){
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+    }
+    div:nth-of-type(2){
+      width: 50px;
+      height: 50px;
+      background-color: yellow;
+      position: fixed;
+      right: 0px;
+      bottom: 0px;
+    }
+  </style>
+</head>
+<body>
+<div>div1</div>
+<div>div2</div>
+</body>
+</html>
