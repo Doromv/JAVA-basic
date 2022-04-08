@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+    //类class
+    class student{
+      constructor(name) {
+        this.name=name;
+      }
+      hello(){
+        alert('hello');
+      }
+    }
+    var xiao=new student('xiao');
+    //继承extends
+    class xiaostudent extends student {
+      constructor(name,grade){
+        super(name);
+        this.grade=grade;
+      };
+      myGrade(){
+        alert('我是小学生');
+      };
+    };
+   var xxs=new xiaostudent('xxs','一年级');
+  </script>
+</head>
+<body>
+
+</body>
+</html>

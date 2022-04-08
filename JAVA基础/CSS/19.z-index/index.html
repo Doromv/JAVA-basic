@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    #content{
+      width: 300px;
+      padding: 0px;
+      margin: 0px;
+      font-size: 12px;
+      line-height: 25px;
+      border: 1px solid black;
+    }
+    ul,li{
+      padding: 0px;
+      margin: 0px;
+      list-style: none;
+    }
+    #content ul{
+      position: relative;
+    }
+    .tipText,.tipBg{
+      position: absolute;
+      width: 300px;
+      height: 25px;
+      top: 276px;
+    }
+    .tipText{
+      /*z-index默认是0；最高无线*/
+      z-index: 999;
+    }
+    .tipBg{
+      background-color: #2a7080;
+      /*透明度设置*/
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+<div id="content">
+  <ul>
+    <li><img src="../../resources/image/qaq.jpg" alt=""></li>
+    <li class="tipText">锐锐锐锐锐锐锐锐</li>
+    <li class="tipBg"></li>
+    <li>时间：2099-01-01</li>
+    <li>地点：月球一号基地</li>
+  </ul>
+</div>
+</body>
+</html>

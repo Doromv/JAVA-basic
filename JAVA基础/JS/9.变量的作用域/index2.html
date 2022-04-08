@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+    //内部函数可以访问外部函数，反之不行
+    function qj1(){
+      var x=1
+      function qj2(){
+        var y=x+1;
+      }
+      qj2();
+      var z=y+1;
+    }
+    console.log(z);
+  </script>
+</head>
+<body>
+
+</body>
+</html>

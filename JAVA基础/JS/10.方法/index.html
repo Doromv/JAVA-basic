@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+    //方法就是把函数放在对象的内部，调方法一定要带括号
+    //this指向使用该方法的对象
+    function getAge(){
+    var now=new Date().getFullYear();
+    return now-this.birth;
+    }//方法写在对象外部
+    var RGod={
+      name:'周锐',
+    birth:'2001',
+      age:getAge
+      //function (){
+        //var now=new Date().getFullYear();
+       // return now-this.birth;
+      //}//方法写在对象的内部
+    };
+       console.log(RGod.age());//调用方法的第一种方式
+       console.log(getAge .apply(RGod,[]));//调用方法的第二种方式
+    RGod.age();//调用方法的第三种方式
+  </script>
+</head>
+<body>
+
+</body>
+</html>

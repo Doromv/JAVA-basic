@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--通过parentElement获取父节点，再通过父节点删除自己-->
+<div id="father">
+  <h1>标题一</h1>
+  <p id="p1">p1</p>
+  <p id="p2">p2</p>
+</div>
+
+<script>
+  // 方法一
+var self=document.getElementById('p1');
+var father=self.parentElement;
+father.removeChild(self);
+ // 方法二(删除多个节点的时候，children的下标是在时刻变化的，删除节点的时候一定要注意！)
+father.removeChild(father.children[0]);
+</script>
+</body>
+</html>
