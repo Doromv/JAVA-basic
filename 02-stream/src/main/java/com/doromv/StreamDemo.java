@@ -2,11 +2,17 @@ package com.doromv;
 
 import com.doromv.pojo.Author;
 import com.doromv.pojo.Book;
+import com.sun.org.apache.regexp.internal.RE;
+import lombok.val;
 
+import javax.xml.bind.Element;
 import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -30,7 +36,152 @@ public class StreamDemo {
 //        getAuthorsStream4();
 //        getAuthorsStream5();
 //        getAuthorsStream6();
-        getAuthorsStream7();
+//        getAuthorsStream7();
+//        getAuthorsStream8();
+//        getAuthorsStream9();
+//        getAuthorsStream10();
+//        getAuthorsStream11();
+//        getAuthorsStream12();
+//        getAuthorsStream13();
+//        getAuthorsStream14();
+//        getAuthorsStream15();
+//        getAuthorsStream16();
+//        getAuthorsStream17();
+//        getAuthorsStream18();
+//        getAuthorsStream19();
+//        getAuthorsStream20();
+//        getAuthorsStream21();
+        getAuthorsStream22();
+    }
+
+    private static void getAuthorsStream22() {
+        Stream<Author> stream = getAuthors().stream();
+        Optional<Integer> x = stream
+                .map(author -> author.getAge())
+                .reduce((result, element) -> result = result > element ? element : result);
+        x.ifPresent(age-> System.out.println(age));
+    }
+
+    private static void getAuthorsStream21() {
+        Stream<Author> stream = getAuthors().stream();
+        System.out.println(stream
+                .map(author -> author.getAge())
+                .reduce(Integer.MAX_VALUE, (result, element) -> result = element < result ? element : result));
+    }
+
+    private static void getAuthorsStream20() {
+        Stream<Author> stream = getAuthors().stream();
+        System.out.println(stream
+                .map(author -> author.getAge())
+                .reduce(Integer.MIN_VALUE, (result, element) -> result = element > result ? element : result));
+    }
+
+    private static void getAuthorsStream19() {
+        Stream<Author> stream = getAuthors().stream();
+        System.out.println(stream
+                .distinct()
+                .map(author -> author.getAge())
+                .reduce(0, (result, element) -> result + element));
+    }
+
+    private static void getAuthorsStream18() {
+        Stream<Author> stream = getAuthors().stream();
+        Optional<Author> first = stream
+                .sorted((author1, author2) -> author1.getAge() - author2.getAge())
+                .findFirst();
+        first.ifPresent(author -> System.out.println(author.getName()));
+    }
+
+    private static void getAuthorsStream17() {
+        Stream<Author> stream = getAuthors().stream();
+        Optional<Author> any = stream
+                .filter(author -> author.getAge()>18)
+                .findAny();
+        any.ifPresent(author -> System.out.println(author));
+    }
+
+    private static void getAuthorsStream16() {
+        Stream<Author> stream = getAuthors().stream();
+        System.out.println(stream
+                .noneMatch(author -> author.getAge() > 100));
+    }
+
+    private static void getAuthorsStream15() {
+        Stream<Author> stream = getAuthors().stream();
+        System.out.println(stream
+                .allMatch(author -> author.getAge() >= 18));
+    }
+
+    private static void getAuthorsStream14() {
+        Stream<Author> stream = getAuthors().stream();
+        System.out.println(stream
+                .anyMatch(author -> author.getAge() > 29));
+    }
+
+    private static void getAuthorsStream13() {
+        Stream<Author> stream = getAuthors().stream();
+        Map<String, List<Book>> map = stream
+                .distinct()
+                .collect(Collectors.toMap(author -> author.getName(), author -> author.getBooks()));
+        for (String s : map.keySet()) {
+            System.out.println(s+"==="+map.get(s)+"\n");
+        }
+    }
+
+    private static void getAuthorsStream12() {
+        Stream<Author> stream = getAuthors().stream();
+        Set<Book> set = stream
+                .flatMap(author -> author.getBooks().stream())
+                .distinct()
+                .collect(Collectors.toSet());
+        for (Book book : set) {
+            System.out.println(book);
+        }
+    }
+
+    private static void getAuthorsStream11() {
+        Stream<Author> stream = getAuthors().stream();
+        List<String> list = stream
+                .map(author -> author.getName())
+                .distinct()
+                .collect(Collectors.toList());
+        for (String s : list) {
+            System.out.println(s);
+        }
+    }
+
+    private static void getAuthorsStream10() {
+        Stream<Author> stream = getAuthors().stream();
+//        Optional<Book> min = stream
+//                .flatMap(author -> author.getBooks().stream())
+//                .min((book1, book2) -> book1.getScore() - book2.getScore());
+        Optional<Integer> min = stream
+                .flatMap(author -> author.getBooks().stream())
+                .map(book -> book.getScore())
+                .min((score1, score2) -> score1 - score2);
+        Stream<Author> stream1 = getAuthors().stream();
+        Optional<Integer> max = stream1
+                .flatMap(author -> author.getBooks().stream())
+                .map(book -> book.getScore())
+                .max((score1, score2) -> score1 - score2);
+        System.out.println(max.get());
+        System.out.println(min.get());
+    }
+
+    private static void getAuthorsStream9() {
+        Stream<Author> stream = getAuthors().stream();
+        System.out.println(stream
+                .flatMap(author -> author.getBooks().stream())
+                .distinct()
+                .count());
+    }
+
+    private static void getAuthorsStream8() {
+        Stream<Author> stream = getAuthors().stream();
+        stream
+                .map(author -> author.getName())
+                .distinct()
+                .forEach(name-> System.out.println(name));
     }
 
     private static void getAuthorsStream7() {
