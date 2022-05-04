@@ -2,7 +2,7 @@ package com.doromv;
 
 import com.doromv.pojo.Author;
 import com.doromv.pojo.Book;
-import com.sun.org.apache.regexp.internal.RE;
+
 import lombok.val;
 
 import javax.xml.bind.Element;
@@ -51,7 +51,34 @@ public class StreamDemo {
 //        getAuthorsStream19();
 //        getAuthorsStream20();
 //        getAuthorsStream21();
-        getAuthorsStream22();
+//        getAuthorsStream22();
+//        testAnd();
+//        testOr();
+        testNegate();
+    }
+
+    private static void testNegate() {
+        Stream<Author> stream = getAuthors().stream();
+        stream
+                .filter(((Predicate<Author>) author -> author.getAge() > 17).negate())
+                .distinct()
+                .forEach(author -> System.out.println(author.getAge()));
+    }
+
+    private static void testOr() {
+        Stream<Author> stream = getAuthors().stream();
+        stream
+                .filter(((Predicate<Author>) author -> author.getAge() > 17).or(author -> author.getName().length()<2))
+                .distinct()
+                .forEach(author -> System.out.println(author.getName()));
+    }
+
+    private static void testAnd() {
+        Stream<Author> stream = getAuthors().stream();
+        stream
+                .filter(((Predicate<Author>) author -> author.getAge() > 17).and(author -> author.getName().length()>1))
+                .forEach(author -> System.out.println(author.getName()));
+
     }
 
     private static void getAuthorsStream22() {
@@ -270,7 +297,7 @@ public class StreamDemo {
                 .forEach(integer -> System.out.println(integer));
     }
 
-    private static List<Author> getAuthors() {
+    public static List<Author> getAuthors() {
         //数据初始化
         Author author = new Author(1L,"蒙多",33,"一个从菜刀中明悟哲理的祖安人",null);
         Author author2 = new Author(2L,"亚拉索",15,"狂风也追逐不上他的思考速度",null);
