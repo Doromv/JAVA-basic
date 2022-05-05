@@ -54,7 +54,42 @@ public class StreamDemo {
 //        getAuthorsStream22();
 //        testAnd();
 //        testOr();
-        testNegate();
+//        testNegate();
+//        test1();
+        test2();
+    }
+    private static void test2() {
+        Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Integer sum = stream
+                .parallel()
+                .peek(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer num) {
+                        System.out.println(num+Thread.currentThread().getName());
+                    }
+                })
+                .filter(num -> num > 5)
+                .reduce((result, element) -> result + element)
+                .get();
+        System.out.println(sum);
+    }
+
+    public static void test1() {
+
+        List<Author> authors = getAuthors();
+//        authors.stream()
+//                .map(author -> author.getAge())
+//                .map(age -> age + 10)
+//                .filter(age->age>18)
+//                .map(age->age+2)
+//                .forEach(System.out::println);
+
+        authors.stream()
+                .mapToInt(Author::getAge)
+                .map(age -> age + 10)
+                .filter(age->age>18)
+                .map(age->age+2)
+                .forEach(System.out::println);
     }
 
     private static void testNegate() {
